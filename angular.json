@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "host": "apps/host",
+    "host-e2e": "apps/host-e2e",
+    "wolt-game": "libs/wolt-game"
+  }
+}
