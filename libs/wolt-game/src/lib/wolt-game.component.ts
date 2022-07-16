@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'rx-use-cases-wolt-game',
@@ -6,8 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./wolt-game.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WoltGameComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
-}
+export class WoltGameComponent {}

@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@use 'apps/host/src/styles';
+
+.wolt-game-surface {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 200px;
+  width: 200px;
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+
+  .inner-circle {
+    flex-basis: 90%;
+    width: 90%;
+    border: 10px solid #3f51b5;
+    border-radius: 50%;
+  }
+
+  .click-counter {
+    font-size: 34px;
+    position: absolute;
+    z-index: 2;
+  }
+
+  .line {
+    position: absolute;
+    width: 91%;
+    height: 10px;
+    background: #fff;
+    z-index: 1;
+  }
+}
