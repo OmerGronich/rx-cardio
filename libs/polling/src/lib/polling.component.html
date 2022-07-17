@@ -20,7 +20,7 @@
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Exercise instructions</mat-panel-title>
+        <mat-panel-title>Instructions</mat-panel-title>
       </mat-expansion-panel-header>
       <div class="steps">
         <section>
@@ -34,15 +34,16 @@
         <section>
           <h3 class="underline">Polling</h3>
           <p>
-            Clicking the request button should start the polling process.
-            This endpoint should be called first to start the data collection process
+            Clicking the request button should start the polling process. This
+            endpoint should be called first to start the data collection process
           </p>
           <div class="code-example">
             <code> POST /api/prepare </code>
           </div>
           <p>
-            After starting the data collection process, send a request to the following endpoint every few seconds until
-            receiving either an error or success message from the server
+            After starting the data collection process, send a request to the
+            following endpoint every few seconds until receiving either an error
+            or success message from the server
           </p>
           <div class="code-example">
             <code> GET /api/poll </code>
