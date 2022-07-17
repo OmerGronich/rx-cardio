@@ -1,13 +1,54 @@
+<div class="container">
+  <h2 class="title">HTTP Polling</h2>
+  <ng-container *ngTemplateOutlet="description"></ng-container>
+  <section class="polling-section">
+    <div class="status-bar">
+      <h3 class="underline">Polling status:</h3>
+      <button mat-raised-button color="primary">request</button>
+    </div>
+    <mat-form-field appearance="fill">
+      <textarea
+        matInput
+        placeholder="Show data here..."
+        cdkTextareaAutosize="false"
+      ></textarea>
+    </mat-form-field>
+  </section>
+</div>
 
+<ng-template #description>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Exercise instructions</mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="steps">
+        <section>
+          <h3 class="underline">Starting the api</h3>
+          <p>Start the api by running the following command:</p>
+          <div class="code-example">
+            <code> nx serve --project="polling-api" </code>
+          </div>
+        </section>
 
-<h2>
-  Fake polling api
-</h2>
-
-<h4>Start the data collection process in the server: </h4>
-<pre>
-  <code>
-    POST
-    /api/prepare
-  </code>
-</pre>
+        <section>
+          <h3 class="underline">Polling</h3>
+          <p>
+            Clicking the request button should start the polling process.
+            This endpoint should be called first to start the data collection process
+          </p>
+          <div class="code-example">
+            <code> POST /api/prepare </code>
+          </div>
+          <p>
+            After starting the data collection process, send a request to the following endpoint every few seconds until
+            receiving either an error or success message from the server
+          </p>
+          <div class="code-example">
+            <code> GET /api/poll </code>
+          </div>
+        </section>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>

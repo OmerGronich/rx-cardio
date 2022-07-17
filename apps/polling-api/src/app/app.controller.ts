@@ -1,4 +1,13 @@
-import {Controller, Get, Post} from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpStatus,
+  InternalServerErrorException,
+  Post,
+  Res,
+} from '@nestjs/common';
+import { Response } from 'express';
+
 
 import { AppService } from './app.service';
 
@@ -17,8 +26,17 @@ export class AppController {
   }
 
   @Get('poll')
-  poll() {
-    return this.appService.pollData();
-  }
+  poll(@Res({ passthrough: true }) response: Response) {
+    const { status, data, message } = this.appService.pollData();
 
+    if (status === 'error') {
+      throw new InternalServerErrorException({ status, data, message });
+    } else if (status === 'success') {
+      return { status, data, message };
+    } else {
+      return response
+        .status(HttpStatus.ACCEPTED)
+        .send({ status, data, message });
+    }
+  }
 }
