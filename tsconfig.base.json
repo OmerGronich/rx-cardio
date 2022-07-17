@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@rx-use-cases/polling": ["libs/polling/src/index.ts"],
       "@rx-use-cases/wolt-game": ["libs/wolt-game/src/index.ts"]
     }
   },

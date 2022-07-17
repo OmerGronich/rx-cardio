@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('@rx-use-cases/wolt-game').then((m) => m.WoltGameModule),
   },
+  {
+    path: 'polling',
+    loadChildren: () =>
+      import('@rx-use-cases/polling').then((m) => m.PollingModule),
+  },
 ];
 
 @NgModule({

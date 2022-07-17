@@ -4,6 +4,7 @@
   "projects": {
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
+    "polling": "libs/polling",
     "wolt-game": "libs/wolt-game"
   }
 }
