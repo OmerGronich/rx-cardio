@@ -5,6 +5,7 @@
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
     "polling": "libs/polling",
+    "polling-api": "apps/polling-api",
     "wolt-game": "libs/wolt-game"
   }
 }

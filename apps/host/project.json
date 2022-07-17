@@ -9,6 +9,7 @@
         "{options.outputPath}"
       ],
       "options": {
+        "proxyConfig": "apps/host/proxy.conf.json",
         "outputPath": "dist/apps/host",
         "index": "apps/host/src/index.html",
         "main": "apps/host/src/main.ts",
