@@ -44,8 +44,12 @@ section {
     justify-content: space-between;
     align-items: center;
 
-    h3 {
-      margin: 0;
+    &-heading {
+      display: flex;
+      gap: 10px;
+      h3 {
+        margin: 0;
+      }
     }
   }
 

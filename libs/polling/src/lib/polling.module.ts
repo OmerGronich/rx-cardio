@@ -6,11 +6,14 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {UtilsModule} from "@rx-use-cases/utils";
+import {MatChipsModule} from "@angular/material/chips";
+import { MapStatusToColorPipe } from './map-status-to-color.pipe';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
     CommonModule,
-
     RouterModule.forChild([
       {path: '', pathMatch: 'full', component: PollingComponent},
     ]),
@@ -18,7 +21,10 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatInputModule,
     MatButtonModule,
     MatExpansionModule,
+    UtilsModule,
+    MatChipsModule,
+    MatProgressSpinnerModule
   ],
-  declarations: [PollingComponent],
+  declarations: [PollingComponent, MapStatusToColorPipe],
 })
 export class PollingModule {}

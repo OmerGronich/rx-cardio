@@ -27,16 +27,17 @@ export class AppController {
 
   @Get('poll')
   poll(@Res({ passthrough: true }) response: Response) {
-    const { status, data, message } = this.appService.pollData();
+    const { status, data, message } = this.appService.getPollData();
 
     if (status === 'error') {
       throw new InternalServerErrorException({ status, data, message });
     } else if (status === 'success') {
       return { status, data, message };
     } else {
-      return response
+      response
         .status(HttpStatus.ACCEPTED)
         .send({ status, data, message });
+      return;
     }
   }
 }

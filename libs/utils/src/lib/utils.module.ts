@@ -3,9 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LetDirective } from './let.directive';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [
-    LetDirective
-  ],
+    imports: [CommonModule],
+    declarations: [
+        LetDirective
+    ],
+    exports: [
+        LetDirective
+    ]
 })
 export class UtilsModule {}
