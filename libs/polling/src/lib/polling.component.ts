@@ -2,13 +2,17 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   catchError,
   first,
+  identity,
   interval,
+  Observable,
   of,
   repeat,
   startWith,
   Subject,
   switchMap,
+  takeUntil,
   takeWhile,
+  timer,
 } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,6 +21,33 @@ interface PollingState {
   message: string;
   data?: any[];
 }
+
+interface PollingOptions<T> {
+  pollingInterval: number;
+  completeAfter?: number;
+  pollWhile?: (arg: T) => boolean;
+  inclusive?: boolean;
+}
+
+function poll<T>(options: PollingOptions<T>) {
+  return (source$: Observable<T>): Observable<T> => {
+    const completeAfter = options.completeAfter
+      ? takeUntil(timer(options.completeAfter))
+      : identity;
+    const pollWhile = options.pollWhile
+      ? takeWhile(options.pollWhile, options.inclusive || true)
+      : identity;
+
+    return timer(0, options.pollingInterval).pipe(
+      completeAfter,
+      switchMap(() => source$),
+      pollWhile
+    );
+  };
+}
+
+const ONE_SECOND = 1000;
+const FORTY_SECONDS = ONE_SECOND * 40;
 
 @Component({
   selector: 'rx-use-cases-polling',
@@ -29,21 +60,17 @@ export class PollingComponent {
 
   polling$ = this.clicksSubject.asObservable().pipe(
     first(),
-    switchMap((_, index) => {
-      if (!index) {
-        return this.prepare();
-      }
-
-      return of(index);
-    }),
-    switchMap((value) =>
-      interval(1000).pipe(
-        startWith(value),
-        switchMap((_) => this.poll()),
-        takeWhile((pollingState) => pollingState.status === 'pending', true),
-        catchError((e) => of(e.error))
+    switchMap(() => this.prepare()),
+    switchMap(() =>
+      this.getData().pipe(
+        poll<PollingState>({
+          pollingInterval: ONE_SECOND,
+          completeAfter: FORTY_SECONDS,
+          pollWhile: (state) => state.status === 'pending',
+        })
       )
     ),
+    catchError((e) => of(e.error)),
     repeat()
   );
 
@@ -57,7 +84,7 @@ export class PollingComponent {
     return this.http.post<PollingState>('/api/prepare', {});
   }
 
-  poll() {
+  getData() {
     return this.http.get<PollingState>('/api/poll');
   }
 }
