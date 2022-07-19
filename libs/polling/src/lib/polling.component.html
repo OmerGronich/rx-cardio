@@ -7,7 +7,7 @@
         <h3 class="underline">Polling status:</h3>
         <mat-chip-list *ngIf="polling?.status">
           <mat-chip selected color="{{ polling.status | mapStatusToColor }}"
-            >{{ polling.status }}
+          >{{ polling.status }}
           </mat-chip>
         </mat-chip-list>
       </div>
@@ -21,6 +21,8 @@
         placeholder="Show data here..."
         cdkTextareaAutosize="false"
         [value]="polling | json"
+        [readonly]="true"
+        [disabled]="true"
       ></textarea>
     </mat-form-field>
   </section>
