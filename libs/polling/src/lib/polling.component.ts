@@ -78,8 +78,9 @@ export class PollingComponent {
             pollWhile: (state) => state.status === 'pending',
           })
         )
-      ).pipe(tap(console.log))
+      )
     ),
+    tap(console.log),
     catchError((e) => of(e.error)),
     repeat()
   );
