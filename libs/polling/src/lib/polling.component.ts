@@ -1,9 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   catchError,
+  concat,
+  concatMap,
+  delay,
   first,
   identity,
   interval,
+  map,
   Observable,
   of,
   repeat,
@@ -12,6 +16,7 @@ import {
   switchMap,
   takeUntil,
   takeWhile,
+  tap,
   timer,
 } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -24,6 +29,7 @@ interface PollingState {
 
 interface PollingOptions<T> {
   pollingInterval: number;
+  startAfter?: number;
   completeAfter?: number;
   pollWhile?: (arg: T) => boolean;
   inclusive?: boolean;
@@ -37,8 +43,9 @@ function poll<T>(options: PollingOptions<T>) {
     const pollWhile = options.pollWhile
       ? takeWhile(options.pollWhile, options.inclusive || true)
       : identity;
+    const startAfter = options.startAfter ?? 0;
 
-    return timer(0, options.pollingInterval).pipe(
+    return timer(startAfter, options.pollingInterval).pipe(
       completeAfter,
       switchMap(() => source$),
       pollWhile
@@ -60,15 +67,18 @@ export class PollingComponent {
 
   polling$ = this.clicksSubject.asObservable().pipe(
     first(),
-    switchMap(() => this.prepare()),
     switchMap(() =>
-      this.getData().pipe(
-        poll<PollingState>({
-          pollingInterval: ONE_SECOND,
-          completeAfter: FORTY_SECONDS,
-          pollWhile: (state) => state.status === 'pending',
-        })
-      )
+      concat(
+        this.prepare(),
+        this.getData().pipe(
+          poll<PollingState>({
+            pollingInterval: ONE_SECOND,
+            completeAfter: FORTY_SECONDS,
+            startAfter: 1000,
+            pollWhile: (state) => state.status === 'pending',
+          })
+        )
+      ).pipe(tap(console.log))
     ),
     catchError((e) => of(e.error)),
     repeat()
