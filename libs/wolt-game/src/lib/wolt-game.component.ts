@@ -1,10 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
+  distinctUntilChanged,
+  filter,
   first,
   map,
   merge,
   Observable,
+  pluck,
+  repeat,
   scan,
+  shareReplay,
   startWith,
   Subject,
   switchMap,
@@ -49,10 +54,10 @@ export class WoltGameComponent implements OnInit {
   clicksSubject = new Subject<EventType>();
   startingTime = startingTime;
   state$!: Observable<State>;
+  highScore!: Observable<number>;
 
   ngOnInit(): void {
-    const clicks$ = this.clicksSubject
-      .asObservable();
+    const clicks$ = this.clicksSubject.asObservable();
 
     const timer$: Observable<EventType> = clicks$.pipe(
       first(),
@@ -62,8 +67,18 @@ export class WoltGameComponent implements OnInit {
 
     this.state$ = merge(clicks$, timer$).pipe(
       scan(reducer, initialState),
+      startWith(initialState),
       takeWhile((state) => state.time > 0, true),
-      startWith(initialState)
+      repeat()
+    );
+
+    this.highScore = this.state$.pipe(
+      filter((state) => state.time === 0),
+      pluck('clicks'),
+      startWith(0),
+      shareReplay(1),
+      scan((acc, curr) => Math.max(acc, curr), 0),
+      distinctUntilChanged()
     );
   }
 
