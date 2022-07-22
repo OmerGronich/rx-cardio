@@ -4,6 +4,7 @@
   "projects": {
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
+    "min-max-sliders": "libs/min-max-sliders",
     "polling": "libs/polling",
     "polling-api": "apps/polling-api",
     "utils": "libs/utils",
