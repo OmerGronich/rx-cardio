@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rx-use-cases/min-max-sliders": ["libs/min-max-sliders/src/index.ts"],
       "@rx-use-cases/polling": ["libs/polling/src/index.ts"],
       "@rx-use-cases/utils": ["libs/utils/src/index.ts"],
       "@rx-use-cases/wolt-game": ["libs/wolt-game/src/index.ts"]

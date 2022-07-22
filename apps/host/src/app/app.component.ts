@@ -11,6 +11,5 @@ export class AppComponent {
   links: Link[] = [
     { href: 'wolt-game', label: 'Wolt Game' },
     { href: 'polling', label: 'HTTP Polling' },
-    { href: 'min-max', label: 'Linked min-max sliders' },
   ];
 }

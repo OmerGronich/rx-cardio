@@ -12,13 +12,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('@rx-use-cases/polling').then((m) => m.PollingModule),
   },
-  {
-    path: 'min-max',
-    loadChildren: () =>
-      import('@rx-use-cases/min-max-sliders').then(
-        (m) => m.MinMaxSlidersModule
-      ),
-  },
 ];
 
 @NgModule({
