@@ -11,7 +11,7 @@
           </mat-chip>
         </mat-chip-list>
       </div>
-      <button mat-raised-button color="primary" (click)="startPolling()">
+      <button mat-raised-button color="primary" (click)="startPolling()" [disabled]="polling?.status === 'pending'">
         request
       </button>
     </div>

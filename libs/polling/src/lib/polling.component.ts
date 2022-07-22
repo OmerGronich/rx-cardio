@@ -65,7 +65,7 @@ const FORTY_SECONDS = ONE_SECOND * 40;
 export class PollingComponent {
   private clicksSubject = new Subject<void>();
 
-  polling$ = this.clicksSubject.asObservable().pipe(
+  polling$: Observable<PollingState> = this.clicksSubject.asObservable().pipe(
     first(),
     switchMap(() =>
       concat(
