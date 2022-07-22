@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rx-use-cases-polling',
+  selector: 'rx-cardio-polling',
   templateUrl: './polling.component.html',
   styleUrls: ['./polling.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

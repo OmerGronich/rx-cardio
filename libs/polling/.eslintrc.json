@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "rx-use-cases",
+            "prefix": "rx-cardio",
             "style": "kebab-case"
           }
         ]
