@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'polling-api',
+  displayName: 'api',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/polling-api',
+  coverageDirectory: '../../coverage/apps/api',
 };

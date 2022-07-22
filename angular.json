@@ -2,10 +2,10 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "api": "apps/api",
     "host": "apps/host",
     "host-e2e": "apps/host-e2e",
     "polling": "libs/polling",
-    "polling-api": "apps/polling-api",
     "utils": "libs/utils",
     "wolt-game": "libs/wolt-game"
   }
