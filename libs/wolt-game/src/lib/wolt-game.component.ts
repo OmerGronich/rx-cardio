@@ -54,7 +54,7 @@ export class WoltGameComponent implements OnInit {
   clicksSubject = new Subject<EventType>();
   startingTime = startingTime;
   state$!: Observable<State>;
-  highScore!: Observable<number>;
+  highScore$!: Observable<number>;
 
   ngOnInit(): void {
     const clicks$ = this.clicksSubject.asObservable();
@@ -72,7 +72,7 @@ export class WoltGameComponent implements OnInit {
       repeat()
     );
 
-    this.highScore = this.state$.pipe(
+    this.highScore$ = this.state$.pipe(
       filter((state) => state.time === 0),
       pluck('clicks'),
       startWith(0),
