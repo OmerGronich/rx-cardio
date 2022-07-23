@@ -4,9 +4,10 @@ import {
   HttpStatus,
   InternalServerErrorException,
   Post,
+  Req,
   Res,
 } from '@nestjs/common';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 
 import { AppService } from './app.service';
 
@@ -37,5 +38,16 @@ export class AppController {
         .status(HttpStatus.ACCEPTED)
         .send({ status, data, message });
     }
+  }
+
+  @Get('posts')
+  getPosts(@Req() req: Request) {
+    const page = +req.query.page;
+    const next = new URL(`http://${req.headers.host}${req.path}?page=${page + 1}`);
+    console.log(next)
+    return {
+      data: this.appService.getPosts(page || 1),
+      next,
+    };
   }
 }

@@ -1,5 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import data from './mock.json';
+import data from './mock-users.json';
+import posts from './mock-posts.json';
+
+const chunks = (arr, n) => {
+  const chunksArr = [];
+  if (arr != null && arr != undefined) {
+    for (let i = 0; i < arr.length; i += n) {
+      if (arr.length - i >= n) chunksArr.push(arr.slice(i, i + n));
+      else chunksArr.push(arr.slice(i, arr.length));
+    }
+    return chunksArr;
+  }
+};
 
 export interface PollingResponse {
   status: 'pending' | 'success' | 'error';
@@ -49,5 +61,11 @@ export class AppService {
 
   pollData(): PollingResponse {
     return state;
+  }
+
+  getPosts(page: number) {
+    const postsByPage = [...chunks(posts, 10)];
+
+    return postsByPage[page - 1];
   }
 }
