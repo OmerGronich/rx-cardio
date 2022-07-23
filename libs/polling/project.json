@@ -1,7 +1,7 @@
 {
   "projectType": "library",
   "sourceRoot": "libs/polling/src",
-  "prefix": "rx-use-cases",
+  "prefix": "rx-cardio",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",

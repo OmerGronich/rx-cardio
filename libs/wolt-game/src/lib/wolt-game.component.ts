@@ -45,7 +45,7 @@ const startingTime = 5;
 const initialState = { time: startingTime, clicks: 0 };
 
 @Component({
-  selector: 'rx-use-cases-wolt-game',
+  selector: 'rx-cardio-wolt-game',
   templateUrl: './wolt-game.component.html',
   styleUrls: ['./wolt-game.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

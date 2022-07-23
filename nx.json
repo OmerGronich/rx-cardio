@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "rx-use-cases",
+  "npmScope": "rx-cardio",
   "affected": {
     "defaultBase": "main"
   },

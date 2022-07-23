@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/host/src",
-  "prefix": "rx-use-cases",
+  "prefix": "rx-cardio",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

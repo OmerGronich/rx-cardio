@@ -57,7 +57,7 @@ const ONE_SECOND = 1000;
 const FORTY_SECONDS = ONE_SECOND * 40;
 
 @Component({
-  selector: 'rx-use-cases-polling',
+  selector: 'rx-cardio-polling',
   templateUrl: './polling.component.html',
   styleUrls: ['./polling.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

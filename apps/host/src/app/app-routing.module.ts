@@ -5,12 +5,12 @@ const routes: Routes = [
   {
     path: 'wolt-game',
     loadChildren: () =>
-      import('@rx-use-cases/wolt-game').then((m) => m.WoltGameModule),
+      import('@rx-cardio/wolt-game').then((m) => m.WoltGameModule),
   },
   {
     path: 'polling',
     loadChildren: () =>
-      import('@rx-use-cases/polling').then((m) => m.PollingModule),
+      import('@rx-cardio/polling').then((m) => m.PollingModule),
   },
 ];
 
