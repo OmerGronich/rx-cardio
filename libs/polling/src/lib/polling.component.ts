@@ -64,22 +64,22 @@ const FORTY_SECONDS = ONE_SECOND * 40;
 })
 export class PollingComponent {
   private clicksSubject = new Subject<void>();
+  private readonly firstClick$ = this.clicksSubject
+    .asObservable()
+    .pipe(first());
 
-  polling$: Observable<PollingState> = this.clicksSubject.asObservable().pipe(
-    first(),
-    switchMap(() =>
-      concat(
-        this.prepare(),
-        this.getData().pipe(
-          poll<PollingState>({
-            pollingInterval: ONE_SECOND,
-            completeAfter: FORTY_SECONDS,
-            startAfter: 1000,
-            pollWhile: (state) => state.status === 'pending',
-          })
-        )
-      )
-    ),
+  polling$: Observable<PollingState> = concat(
+    this.firstClick$,
+    this.prepare(),
+    this.getData().pipe(
+      poll<PollingState>({
+        pollingInterval: ONE_SECOND,
+        completeAfter: FORTY_SECONDS,
+        startAfter: ONE_SECOND,
+        pollWhile: (state) => state.status === 'pending',
+      })
+    )
+  ).pipe(
     tap(console.log),
     catchError((e) => of(e.error)),
     repeat()

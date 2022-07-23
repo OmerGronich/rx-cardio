@@ -6,7 +6,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatExpansionModule} from "@angular/material/expansion";
-import {UtilsModule} from "@rx-use-cases/utils";
+import {UtilsModule} from "@rx-cardio/utils";
 import {MatChipsModule} from "@angular/material/chips";
 import { MapStatusToColorPipe } from './map-status-to-color.pipe';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
